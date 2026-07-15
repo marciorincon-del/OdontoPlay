@@ -17,6 +17,19 @@ A API expõe:
 - Pacientes em `/api/patients` (GET, POST, GET/PUT/DELETE por `:id`)
 - Agendamentos em `/api/appointments` (GET, POST, GET/PUT/DELETE por `:id`)
 
+### Frontend
+
+Com o backend rodando (porta 3000), em outro terminal:
+
+```
+cd frontend
+npm install
+npm run dev   # abre em http://localhost:5173
+```
+
+Interface simples com duas abas (Pacientes / Agendamentos), cada uma com lista e formulário de
+cadastro, consumindo a API do backend.
+
 ## Contribuindo
 
 1. Crie uma branch a partir da `main` com um nome descritivo (ex: `docs/ajuste-x`).
