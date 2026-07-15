@@ -6,9 +6,12 @@ export default function App() {
   const [tab, setTab] = useState('patients');
 
   return (
-    <main style={{ maxWidth: 600, margin: '0 auto', padding: '1rem', fontFamily: 'sans-serif' }}>
-      <h1>OdontoPlay</h1>
-      <nav>
+    <main className="app">
+      <header className="app-header">
+        <span className="logo">🦷</span>
+        <h1>OdontoPlay</h1>
+      </header>
+      <nav className="tabs">
         <button onClick={() => setTab('patients')} disabled={tab === 'patients'}>
           Pacientes
         </button>

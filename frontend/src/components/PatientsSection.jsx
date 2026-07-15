@@ -31,38 +31,51 @@ export default function PatientsSection() {
   }
 
   return (
-    <section>
+    <section className="card">
       <h2>Pacientes</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-banner">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Telefone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button type="submit">Adicionar paciente</button>
+        <div className="form-grid">
+          <input
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Telefone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <button className="btn" type="submit">
+          Adicionar paciente
+        </button>
       </form>
-      <ul>
-        {patients.map((p) => (
-          <li key={p.id}>
-            {p.name} {p.phone ? `— ${p.phone}` : ''}
-          </li>
-        ))}
-      </ul>
+      {patients.length === 0 ? (
+        <p className="empty-state">Nenhum paciente cadastrado ainda.</p>
+      ) : (
+        <ul className="list">
+          {patients.map((p) => (
+            <li key={p.id}>
+              <span className="primary">{p.name}</span>
+              {(p.phone || p.email) && (
+                <span className="secondary">
+                  {[p.phone, p.email].filter(Boolean).join(' · ')}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
