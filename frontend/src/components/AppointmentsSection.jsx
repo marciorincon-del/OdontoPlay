@@ -38,39 +38,52 @@ export default function AppointmentsSection() {
   }
 
   return (
-    <section>
+    <section className="card">
       <h2>Agendamentos</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-banner">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <select value={patientId} onChange={(e) => setPatientId(e.target.value)} required>
-          <option value="">Selecione um paciente</option>
-          {patients.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="datetime-local"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Observações"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        />
-        <button type="submit">Agendar</button>
+        <div className="form-grid">
+          <select value={patientId} onChange={(e) => setPatientId(e.target.value)} required>
+            <option value="">Selecione um paciente</option>
+            {patients.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+          <input
+            type="datetime-local"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Observações"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+        </div>
+        <button className="btn" type="submit">
+          Agendar
+        </button>
       </form>
-      <ul>
-        {appointments.map((a) => (
-          <li key={a.id}>
-            {new Date(a.date).toLocaleString('pt-BR')} — {patientName(a.patientId)} ({a.status})
-          </li>
-        ))}
-      </ul>
+      {appointments.length === 0 ? (
+        <p className="empty-state">Nenhum agendamento ainda.</p>
+      ) : (
+        <ul className="list">
+          {appointments.map((a) => (
+            <li key={a.id}>
+              <span className="primary">{patientName(a.patientId)}</span>
+              <span className="secondary">
+                {new Date(a.date).toLocaleString('pt-BR')}
+                {a.notes ? ` · ${a.notes}` : ''}
+              </span>
+              <span className="status-badge">{a.status}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
