@@ -1,7 +1,16 @@
 # OdontoPlay
 
-Projeto inicial do OdontoPlay.
+Sistema de gestão para clínica odontológica.
 
 ## Como rodar
 
-Ainda não há código de aplicação neste repositório — esta é a estrutura inicial do projeto.
+### Backend
+
+```
+cd backend
+npm install
+npm test    # roda os testes
+npm start   # sobe a API em http://localhost:3000
+```
+
+A API expõe o recurso de pacientes em `/api/patients` (GET, POST, GET/PUT/DELETE por `:id`).
